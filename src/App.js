@@ -4,33 +4,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      data: [],
       isLoaded: false,
     }
   }
 
   componentDidMount() {
     fetch('https://prime.exchangerate-api.com/v5/4f2c91e9553da2e933e007ea/latest/USD')
-        .then(res => res.json())
-        .then(json => {
+        .then(response => response.json())
+        .then(data => {
           this.setState({
             isLoaded: true,
-            items: json,
+            USD: data,
           })
-        }); 
+        });
   }
 
   render() {
-    var {isLoaded, items} = this.state;
+    console.log()
+
+    var {isLoaded, data} = this.state;
     if (!isLoaded) {
       return <div>loading...</div>;
     } else {
       return (
           <div className="App">
             <ul>
-              {items.data(item => (
-                <li key={item.id}>
-               result: {item.result} | documentation {item.documentation}
+              {data.map(data => (
+                <li key={data.id}>
+               result: {data.result} | documentation {data.documentation}
                 </li>
               ))}
             </ul>
