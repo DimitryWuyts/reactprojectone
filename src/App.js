@@ -64,6 +64,7 @@ function App  (){
         const json = await response.json();
         setData(json);
         setLoading(false)
+        console.log(json)
     }
 
     useEffect(() => {
@@ -72,7 +73,7 @@ function App  (){
     }, []);
 
     return (<div>
-        <h1>{data.map}{loading}</h1>
+        <h1>{data.date}</h1>
     </div>);
 };
 
